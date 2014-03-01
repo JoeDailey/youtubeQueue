@@ -1,0 +1,19 @@
+{
+   "content_scripts": [ {
+      "css": [ "style.css" ],
+      "js": [ "jquery.min.js", "jstorage.js", "steam.js" ],
+    "matches": [ "https://www.youtube.com/watch*", "http://www.youtube.com/watch*" ]
+   } ],
+   "description": "Adds and entire queue feature to youtube",
+   "icons": {
+      "16": "icons/icon16.png",
+      "19": "icons/icon19.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "64": "icons/icon64.png",
+      "128": "icons/icon128.png"
+   },
+   "manifest_version": 2,
+   "name": "Queue for Youtube",
+   "version": "0.1.0"
+}
