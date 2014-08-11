@@ -1,8 +1,8 @@
 {
    "content_scripts": [ {
       "css": [ "style.css" ],
-      "js": [ "jquery.min.js", "jstorage.js", "steam.js" ],
-    "matches": [ "https://www.youtube.com/watch*", "http://www.youtube.com/watch*" ]
+      "js": [ "jquery.min.js", "jstorage.js", "ytq.js" ],
+    "matches": [ "https://www.youtube.com/*", "http://www.youtube.com/*" ]
    } ],
    "description": "Adds and entire queue feature to youtube",
    "icons": {
