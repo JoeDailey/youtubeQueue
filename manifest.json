@@ -1,6 +1,6 @@
 {
    "content_scripts": [ {
-      "css": [ "style.css" ],
+      "css": [ "css/style.css", "css/font-awesome.min.css" ],
       "js": [ "jquery.min.js", "jstorage.js", "ytq.js" ],
     "matches": [ "https://www.youtube.com/*", "http://www.youtube.com/*" ]
    } ],

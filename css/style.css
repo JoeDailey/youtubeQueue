@@ -1,0 +1,122 @@
+#body-container{
+	margin-bottom: 48px!important;
+}
+#footer-container{
+	padding-bottom: 48px!important;
+}
+
+
+#joe_queue_container{
+	width:100%!important;
+	background:rgba(0,0,0,0.95)!important;
+	position:fixed!important;
+	bottom:-8px!important;
+	z-index:2000000000!important;
+}
+
+#joe_queue_buttons{
+	background: #1B1B1B;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+.joe_queue_buttons{
+	color:#757575;
+	font-size:20px;
+	cursor:pointer; 
+	display:inline-block;
+	height: 48px;
+	line-height: 48px;
+	margin-right:10px;
+
+    -webkit-transition: transform 0.5s!important; /* For Safari 3.1 to 6.0 */
+	tansition: transform 0.5s!important;
+
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.joe_queue_buttons:hover{
+	color:#959595;
+}
+
+#joe_queue_buttons_show{
+	margin-right: 20px;
+}
+#joe_queue_buttons_clear{
+	padding-top: 5px;	
+	float:right!important;
+}
+/*#joe_queue_buttons_shuffle{
+	padding-top: 8px;
+}
+#joe_queue_buttons_shuffle.isShuffle i{
+	color: #ccc;
+}*/
+#joe_queue_buttons_next{
+	
+}
+#joe_queue_buttons_prev{
+	
+}
+#joe_queue_container.isDown #joe_queue{
+	height: 0px!important;
+}
+#joe_queue_container.isDown #joe_queue_buttons_show{
+    -webkit-transform: rotate(180deg)!important; /* Chrome, Safari, Opera */
+    transform: rotate(180deg)!important;
+}
+
+
+
+#joe_queue{
+	width:100%;
+	height:150px;
+
+	overflow-x:scroll;
+	overflow-y:hidden;
+	white-space: nowrap;
+	display: inline-block;
+
+    -webkit-transition: height 0.5s!important; /* For Safari 3.1 to 6.0 */
+	tansition: height 0.5s!important;
+}
+
+
+
+.joe_queue_list_item{
+	display:inline;
+	padding-left:15px;
+	padding-right:15px;
+	height:100px!important;
+	margin-top:25px;
+}
+.joe_queue_list_item img{
+	height: 100px;
+	margin-top: 25px;
+	opacity: 0.5;
+}
+
+.joe_queue_list_item img.playing{
+	opacity: 1!important;
+	border-bottom:red solid 2px;
+}
+
+.joe_add2queue_buttons *{
+	color: white;
+}
+.joe_add2queue_buttons button{
+	padding: 8px;
+	cursor: pointer;
+}
+.joe_add2queue_buttons{
+	background: rgba(0,0,0,0.6);
+	color:white;
+	position: absolute;
+	top: 3px!important;
+	left: 8px!important;
+}
+.joe_add2queue_button_next{
+	display: none;
+}
+.joe_add2queue_buttons:hover > .joe_add2queue_button_next{
+	display: block;
+}
