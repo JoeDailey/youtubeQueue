@@ -125,6 +125,11 @@ var _Queue = {
 
 			$("#joe_queue").append(item);
 		 }
+	},
+	delete: function($obj, pos){
+		queueList.splice(pos,1);
+		$.jStorage.set("joe_queue", JSON.stringify(queueList));
+		$($obj.parent()).remove();
 	}
 }
 
@@ -195,12 +200,15 @@ for(var x = 0; x < queueList.length; x++){
 	var item = $(
 		'<a class="joe_queue_list_item" joe-queue-pos="'+x+'" href="'+queueList[x]+'">'+
 			'<img src="//i1.ytimg.com/vi/'+imageURL+'/default.jpg">'+
+			'<i class="fa fa-times-circle"></>'+
 		'</a>'
 	);
-	if(x == queuePosition && queueList[x] == "/"+document.location.href.split("/")[3] )
-		item.find("img").addClass("playing");
 
 	$("#joe_queue").append(item);
+	if(x == queuePosition && queueList[x] == "/"+document.location.href.split("/")[3] ){
+		item.find("img").addClass("playing");
+		$('#joe_queue').scrollLeft(item.offset().left);
+	}
  }
 
 ////Events
@@ -225,7 +233,13 @@ $("#joe_queue_buttons_prev").click(function(){
  });
 
 $(".joe_queue_list_item").click(function(){
+	// e.preventDefault();
 	_Queue.select($(this));
+ });
+$(".joe_queue_list_item i").click(function(e){
+	e.preventDefault();
+	_Queue.delete($(this), $($(this).parent()).attr("joe-queue-pos"));
+	return false;
  });
 
 try{
