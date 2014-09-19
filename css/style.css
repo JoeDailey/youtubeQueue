@@ -102,10 +102,11 @@
 	opacity: 0.8;
 }
 .joe_queue_list_item i{
+	opacity: 0.5;
 	position: relative;
 	left:-1em;
 	top:-1em;
-	color: white;
+	color:#757575;
 }
 .joe_queue_list_item i:hover{
 	color: red;

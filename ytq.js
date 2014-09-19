@@ -32,7 +32,6 @@ if(!queueList){
 
 //current video in queue
 var queuePosition = $.jStorage.get("joe_queue_position");
-console.log(queuePosition);
 if(!queuePosition){
 	queuePosition = 0;
 	$.jStorage.set("joe_queue_position", queuePosition);
@@ -96,7 +95,6 @@ var _Queue = {
 		});
 	},
 	insert:function(url){
-		console.log(url);
 		// shift all latter
 		var i;
 		for (var i = queueList.length - 1; i > queuePosition; i--) {
@@ -104,7 +102,6 @@ var _Queue = {
 		};
 		//add after current
 		queueList[i+1] = url;
-		console.log("queueList", queueList)
 		//save
 		$.jStorage.set("joe_queue", JSON.stringify(queueList));
 		
@@ -112,7 +109,6 @@ var _Queue = {
 		$("#joe_queue").empty();
 		// (re)populate DOM queue
 		for(var x = 0; x < queueList.length; x++){
-			console.log(queueList);
 			var imageURL = _getV(queueList[x]);
 			var item = $(
 				'<a class="joe_queue_list_item" joe-queue-pos="'+x+'" href="'+queueList[x]+'">'+
@@ -161,7 +157,6 @@ var joe_queue_container = $(
 $("#body").prepend(joe_queue_container);
 
 //set state
-console.log('isUp=', isUp, 'queueList[queuePosition] != "/"+document.location.href.split("/")[3]=', queueList[queuePosition] != "/"+document.location.href.split("/")[3] );
 if(isUp && queueList[queuePosition] == "/"+document.location.href.split("/")[3]){
 	$("#joe_queue_container").removeClass("isDown");
 	isUp = true;
@@ -214,9 +209,7 @@ for(var x = 0; x < queueList.length; x++){
 ////Events
 //show queue
 $("#joe_queue_buttons_show").click(function(){
-	console.log("isup-before",isUp);
 	_Queue.toggle();
-	console.log("isup-after",isUp);
  });
 //clear queue
 $("#joe_queue_buttons_clear").click(function(){
@@ -242,21 +235,23 @@ $(".joe_queue_list_item i").click(function(e){
 	return false;
  });
 
-try{
-	//on video end, play next
-	var video = document.getElementsByTagName('video')[0];
 
-	video.onended = function(e) {
+
+try{
+	var playNextAtEnd = function(e) {
 		if(video.getAttribute("data-youtube-id") == _getV(queueList[queuePosition])){
 			_Queue.next();
 		}else{
-			console.log("not the right video");
+			document.getElementsByTagName('video')[0].onended = playNextAtEnd;
 		}
+	}
 
-	};
-}catch(e){
-	console.log("not a video");
-}
+	//on video end, play next
+	var video = document.getElementsByTagName('video')[0];
+
+	video.onended = playNextAtEnd;
+
+}catch(e){}
 
 
 
