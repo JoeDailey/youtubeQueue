@@ -10,7 +10,6 @@ var _getV = function(URL) {
 
 //is up
 var isUp = $.jStorage.get("joe_queue_is_up");
-console.log("isUp",isUp);
 if(!isUp){
 	isUp = false;
 	$.jStorage.set("joe_queue_is_up", isUp);
@@ -42,10 +41,10 @@ if(!queuePosition){
 var _Queue = {
 	toggle:function(){
 		if(isUp){
-			$("#joe_queue_container").removeClass("isDown");
+			$("#joe_queue_container").addClass("isDown");
 			isUp = false;
 		}else{
-			$("#joe_queue_container").addClass("isDown");
+			$("#joe_queue_container").removeClass("isDown");
 			isUp = true;
 		}
 		$.jStorage.set("joe_queue_is_up", isUp);
@@ -157,13 +156,15 @@ var joe_queue_container = $(
 $("#body").prepend(joe_queue_container);
 
 //set state
-console.log(document.location.href.split("/")[3]);
-if(isUp || queueList[queuePosition] != "/"+document.location.href.split("/")[3]){
-	$("#joe_queue_container").addClass("isDown");
-}else{
+console.log('isUp=', isUp, 'queueList[queuePosition] != "/"+document.location.href.split("/")[3]=', queueList[queuePosition] != "/"+document.location.href.split("/")[3] );
+if(isUp && queueList[queuePosition] == "/"+document.location.href.split("/")[3]){
 	$("#joe_queue_container").removeClass("isDown");
+	isUp = true;
+}else{
+	$("#joe_queue_container").addClass("isDown");
+	isUp = false;
 }
-
+$.jStorage.set("joe_queue_is_up", isUp);
 
 //add queue button to all links
 $.each($('a[href^="/watch?v="]'), function(index, link){
@@ -205,7 +206,9 @@ for(var x = 0; x < queueList.length; x++){
 ////Events
 //show queue
 $("#joe_queue_buttons_show").click(function(){
+	console.log("isup-before",isUp);
 	_Queue.toggle();
+	console.log("isup-after",isUp);
  });
 //clear queue
 $("#joe_queue_buttons_clear").click(function(){
